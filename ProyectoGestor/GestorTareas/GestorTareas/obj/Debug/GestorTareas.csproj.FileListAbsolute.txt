@@ -1,0 +1,24 @@
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.csproj.AssemblyReference.cache
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.CategoriasForm.resources
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.frmLogin.resources
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.Properties.Resources.resources
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.TareasForm.resources
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.csproj.GenerateResource.cache
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.csproj.CoreCompileInputs.cache
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\bin\Debug\GestorTareas.exe.config
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\bin\Debug\GestorTareas.exe
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\bin\Debug\GestorTareas.pdb
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.exe
+C:\Users\Cristian\Desktop\UniversidadAlgoritmos\GestorTareas\GestorTareas\obj\Debug\GestorTareas.pdb
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\bin\Debug\GestorTareas.exe.config
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\bin\Debug\GestorTareas.exe
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\bin\Debug\GestorTareas.pdb
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.csproj.AssemblyReference.cache
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.CategoriasForm.resources
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.frmLogin.resources
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.Properties.Resources.resources
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.TareasForm.resources
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.csproj.GenerateResource.cache
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.csproj.CoreCompileInputs.cache
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.exe
+C:\Users\Brian Cadavid\Desktop\ProyectoGestor\ProyectoGestor\GestorTareas\GestorTareas\obj\Debug\GestorTareas.pdb
