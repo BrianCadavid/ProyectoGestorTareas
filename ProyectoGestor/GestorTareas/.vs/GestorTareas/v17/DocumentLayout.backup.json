@@ -1,34 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\",
+  "WorkspaceRootPath": "C:\\Users\\Brian Cadavid\\Desktop\\ProyectoGestor\\ProyectoGestor\\GestorTareas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\brian cadavid\\desktop\\proyectogestor\\proyectogestor\\gestortareas\\gestortareas\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\categoriasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\categoriasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\categoriasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\categoriasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\tareasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\tareasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\tareasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\tareasform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|c:\\users\\cristian\\desktop\\universidadalgoritmos\\gestortareas\\gestortareas\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{B86C5450-08E9-4E5F-BF1B-CE90CE9109A4}|GestorTareas\\GestorTareas.csproj|solutionrelative:gestortareas\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,106 +14,26 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\App.config",
-              "RelativeDocumentMoniker": "GestorTareas\\App.config",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\App.config",
-              "RelativeToolTip": "GestorTareas\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-03-02T19:58:34.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TareasForm.cs",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\TareasForm.cs",
-              "RelativeDocumentMoniker": "GestorTareas\\TareasForm.cs",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\TareasForm.cs",
-              "RelativeToolTip": "GestorTareas\\TareasForm.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAkwBcBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:50:08.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TareasForm.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\TareasForm.cs",
-              "RelativeDocumentMoniker": "GestorTareas\\TareasForm.cs",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\TareasForm.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GestorTareas\\TareasForm.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:41:29.956Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CategoriasForm.cs",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\CategoriasForm.cs",
-              "RelativeDocumentMoniker": "GestorTareas\\CategoriasForm.cs",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\CategoriasForm.cs",
-              "RelativeToolTip": "GestorTareas\\CategoriasForm.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwEYAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:17:58.186Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CategoriasForm.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\CategoriasForm.cs",
-              "RelativeDocumentMoniker": "GestorTareas\\CategoriasForm.cs",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\CategoriasForm.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GestorTareas\\CategoriasForm.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T18:00:21.078Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\Form1.cs",
-              "RelativeDocumentMoniker": "GestorTareas\\Form1.cs",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\Form1.cs",
-              "RelativeToolTip": "GestorTareas\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:50:02.737Z",
-              "EditorCaption": ""
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Brian Cadavid\\Desktop\\ProyectoGestor\\ProyectoGestor\\GestorTareas\\GestorTareas\\Form1.cs",
               "RelativeDocumentMoniker": "GestorTareas\\Form1.cs",
-              "ToolTip": "C:\\Users\\Cristian\\Desktop\\UniversidadAlgoritmos\\GestorTareas\\GestorTareas\\Form1.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\Brian Cadavid\\Desktop\\ProyectoGestor\\ProyectoGestor\\GestorTareas\\GestorTareas\\Form1.cs [Dise\u00F1o]",
               "RelativeToolTip": "GestorTareas\\Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-02T17:47:31.001Z",
+              "WhenOpened": "2025-03-05T00:12:26.491Z",
               "EditorCaption": " [Dise\u00F1o]"
             }
           ]
