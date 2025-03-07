@@ -86,7 +86,7 @@
             // 
             // btnIngresar
             // 
-            this.btnIngresar.BackColor = System.Drawing.Color.Khaki;
+            this.btnIngresar.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnIngresar.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.Location = new System.Drawing.Point(125, 286);
             this.btnIngresar.Name = "btnIngresar";
