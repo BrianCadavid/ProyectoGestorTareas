@@ -93,13 +93,13 @@
             this.lblNombre.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.Location = new System.Drawing.Point(107, 64);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(92, 23);
+            this.lblNombre.Size = new System.Drawing.Size(249, 23);
             this.lblNombre.TabIndex = 2;
-            this.lblNombre.Text = "Nombre";
+            this.lblNombre.Text = "Nombre de la Categoría";
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(401, 95);
+            this.txtDescripcion.Location = new System.Drawing.Point(446, 95);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(263, 22);
             this.txtDescripcion.TabIndex = 3;
@@ -108,7 +108,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(397, 64);
+            this.label2.Location = new System.Drawing.Point(442, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 23);
             this.label2.TabIndex = 4;
@@ -130,7 +130,7 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(323, 188);
+            this.btnEditar.Location = new System.Drawing.Point(351, 188);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(116, 38);
             this.btnEditar.TabIndex = 7;
@@ -142,7 +142,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(548, 188);
+            this.btnEliminar.Location = new System.Drawing.Point(593, 188);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(116, 38);
             this.btnEliminar.TabIndex = 8;
@@ -165,6 +165,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.dtgCategorias);
             this.Name = "CategoriasForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CategoriasForm";
             this.Load += new System.EventHandler(this.CategoriasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgCategorias)).EndInit();

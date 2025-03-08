@@ -13,15 +13,11 @@ namespace GestorTareas
 {
     public partial class CategoriasForm: Form
     {
-        private string connectionString;  
+        private string connectionString = "Server=(local)\\SQLEXPRESS;Database=TareasDB1;Integrated Security=True;";
         public CategoriasForm()
         {
             InitializeComponent();
-            connectionString= "Server=DESKTOP-PQCSK5F\\SQLEXPRESS;Database=TareasDB1;" +
-                             "User Id=admin;Password=admin123;";
             LoadCategorias();
-
-
         }
 
 

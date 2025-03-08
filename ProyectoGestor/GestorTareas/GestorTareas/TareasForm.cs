@@ -15,8 +15,7 @@ namespace GestorTareas
     public partial class TareasForm: Form
     {
 
-        private string connectionString = "Server=DESKTOP-PQCSK5F\\SQLEXPRESS;Database=TareasDB1;" +
-                                          "User Id=admin;Password=admin123;";
+        private string connectionString = "Server=(local)\\SQLEXPRESS;Database=TareasDB1;Integrated Security=True;";
 
         public TareasForm()
         {
@@ -268,16 +267,12 @@ namespace GestorTareas
 
         private void btnCategorias_Click(object sender, EventArgs e)
         {
-            try 
-            { 
-            CategoriasForm categoriasForm = new CategoriasForm();
-            categoriasForm.Show();  // Abre el formulario CategoriasForm
-            this.Hide();
-            }
-            catch (Exception ex)
+            this.Hide(); // Oculta el formulario actual
+            using (CategoriasForm categoriasForm = new CategoriasForm())
             {
-                MessageBox.Show("Error al abrir el formulario Categorías: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                categoriasForm.ShowDialog(); // Muestra el formulario de categorías
             }
+            this.Show(); // Vuelve a mostrar el formulario actual al cerrar CategoriasForm
         }
     }
 }

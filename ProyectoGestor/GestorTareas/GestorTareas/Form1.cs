@@ -13,7 +13,8 @@ namespace GestorTareas
 {
     public partial class frmLogin: Form
     {
-        private string connectionString = "Server=DESKTOP-PQCSK5F\\SQLEXPRESS;Database=TareasDB1;User Id=admin;Password=admin123;";
+        private string connectionString = "Server=(local)\\SQLEXPRESS;Database=TareasDB1;Integrated Security=True;";
+
 
         public frmLogin()
         {

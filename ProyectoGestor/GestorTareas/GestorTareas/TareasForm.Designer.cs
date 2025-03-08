@@ -37,6 +37,11 @@
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
             this.dtgTareas = new System.Windows.Forms.DataGridView();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnCategorias = new System.Windows.Forms.Button();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,11 +50,6 @@
             this.estadoID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaCreación = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnCategorias = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgTareas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,67 +154,11 @@
             this.dtgTareas.TabIndex = 8;
             this.dtgTareas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgTareas_CellContentClick);
             // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            this.id.Width = 125;
-            // 
-            // titulo
-            // 
-            this.titulo.HeaderText = "Título";
-            this.titulo.MinimumWidth = 6;
-            this.titulo.Name = "titulo";
-            this.titulo.Width = 125;
-            // 
-            // descripcion
-            // 
-            this.descripcion.HeaderText = "Descripción";
-            this.descripcion.MinimumWidth = 6;
-            this.descripcion.Name = "descripcion";
-            this.descripcion.Width = 125;
-            // 
-            // categoriaId
-            // 
-            this.categoriaId.HeaderText = "Categoria ID";
-            this.categoriaId.MinimumWidth = 6;
-            this.categoriaId.Name = "categoriaId";
-            this.categoriaId.Width = 125;
-            // 
-            // UsuarioID
-            // 
-            this.UsuarioID.HeaderText = "UsuarioID";
-            this.UsuarioID.MinimumWidth = 6;
-            this.UsuarioID.Name = "UsuarioID";
-            this.UsuarioID.Width = 125;
-            // 
-            // estadoID
-            // 
-            this.estadoID.HeaderText = "EstadoID";
-            this.estadoID.MinimumWidth = 6;
-            this.estadoID.Name = "estadoID";
-            this.estadoID.Width = 125;
-            // 
-            // FechaCreación
-            // 
-            this.FechaCreación.HeaderText = "Fecha Creacion";
-            this.FechaCreación.MinimumWidth = 6;
-            this.FechaCreación.Name = "FechaCreación";
-            this.FechaCreación.Width = 125;
-            // 
-            // fechaVencimiento
-            // 
-            this.fechaVencimiento.HeaderText = "Feha Vencimiento";
-            this.fechaVencimiento.MinimumWidth = 6;
-            this.fechaVencimiento.Name = "fechaVencimiento";
-            this.fechaVencimiento.Width = 125;
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.Info;
             this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.SystemColors.Desktop;
-            this.dateTimePicker1.Location = new System.Drawing.Point(835, 56);
+            this.dateTimePicker1.Location = new System.Drawing.Point(721, 12);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(251, 22);
             this.dateTimePicker1.TabIndex = 9;
@@ -222,7 +166,7 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(804, 156);
+            this.btnEditar.Location = new System.Drawing.Point(804, 146);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(116, 38);
             this.btnEditar.TabIndex = 11;
@@ -234,7 +178,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(970, 156);
+            this.btnEliminar.Location = new System.Drawing.Point(970, 146);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(116, 38);
             this.btnEliminar.TabIndex = 12;
@@ -246,7 +190,7 @@
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.GreenYellow;
             this.btnAgregar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(636, 156);
+            this.btnAgregar.Location = new System.Drawing.Point(637, 146);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(116, 38);
             this.btnAgregar.TabIndex = 10;
@@ -257,13 +201,69 @@
             // btnCategorias
             // 
             this.btnCategorias.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategorias.Location = new System.Drawing.Point(636, 56);
+            this.btnCategorias.Location = new System.Drawing.Point(721, 56);
             this.btnCategorias.Name = "btnCategorias";
-            this.btnCategorias.Size = new System.Drawing.Size(127, 38);
+            this.btnCategorias.Size = new System.Drawing.Size(257, 38);
             this.btnCategorias.TabIndex = 13;
-            this.btnCategorias.Text = "Categorias";
+            this.btnCategorias.Text = "Agregar Categorias";
             this.btnCategorias.UseVisualStyleBackColor = true;
             this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
+            // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            // 
+            // titulo
+            // 
+            this.titulo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titulo.HeaderText = "Título";
+            this.titulo.MinimumWidth = 6;
+            this.titulo.Name = "titulo";
+            // 
+            // descripcion
+            // 
+            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcion.HeaderText = "Descripción";
+            this.descripcion.MinimumWidth = 6;
+            this.descripcion.Name = "descripcion";
+            // 
+            // categoriaId
+            // 
+            this.categoriaId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.categoriaId.HeaderText = "Categoria ID";
+            this.categoriaId.MinimumWidth = 6;
+            this.categoriaId.Name = "categoriaId";
+            // 
+            // UsuarioID
+            // 
+            this.UsuarioID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UsuarioID.HeaderText = "UsuarioID";
+            this.UsuarioID.MinimumWidth = 6;
+            this.UsuarioID.Name = "UsuarioID";
+            // 
+            // estadoID
+            // 
+            this.estadoID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.estadoID.HeaderText = "EstadoID";
+            this.estadoID.MinimumWidth = 6;
+            this.estadoID.Name = "estadoID";
+            // 
+            // FechaCreación
+            // 
+            this.FechaCreación.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FechaCreación.HeaderText = "Fecha Creacion";
+            this.FechaCreación.MinimumWidth = 6;
+            this.FechaCreación.Name = "FechaCreación";
+            // 
+            // fechaVencimiento
+            // 
+            this.fechaVencimiento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fechaVencimiento.HeaderText = "Feha Vencimiento";
+            this.fechaVencimiento.MinimumWidth = 6;
+            this.fechaVencimiento.Name = "fechaVencimiento";
             // 
             // TareasForm
             // 
@@ -286,6 +286,7 @@
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.lblTitulo);
             this.Name = "TareasForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TareasForm";
             this.Load += new System.EventHandler(this.TareasForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgTareas)).EndInit();
@@ -308,6 +309,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnCategorias;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn titulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
@@ -316,7 +319,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaCreación;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaVencimiento;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnCategorias;
     }
 }
