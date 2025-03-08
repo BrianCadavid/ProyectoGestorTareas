@@ -262,6 +262,11 @@ namespace GestorTareas
             this.Close();
 
         }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }  
 }
 
