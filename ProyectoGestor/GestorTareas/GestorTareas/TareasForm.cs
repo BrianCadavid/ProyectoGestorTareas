@@ -163,7 +163,9 @@ namespace GestorTareas
 
                         MessageBox.Show("Tarea guardada correctamente.");
                     }
+                    LoadTareas();
                 }
+                
                 catch (Exception ex)
                 {
 
