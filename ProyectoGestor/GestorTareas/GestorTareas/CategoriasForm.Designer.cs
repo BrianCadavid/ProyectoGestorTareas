@@ -39,22 +39,25 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnGuardarCambios = new System.Windows.Forms.Button();
+            this.btnSalirCateg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCategorias)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgCategorias
             // 
+            this.dtgCategorias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgCategorias.BackgroundColor = System.Drawing.Color.SteelBlue;
             this.dtgCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCategorias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombre,
             this.Descripción,
             this.FechaCreacion});
-            this.dtgCategorias.Location = new System.Drawing.Point(111, 258);
+            this.dtgCategorias.Location = new System.Drawing.Point(73, 258);
             this.dtgCategorias.Name = "dtgCategorias";
             this.dtgCategorias.RowHeadersWidth = 51;
             this.dtgCategorias.RowTemplate.Height = 24;
-            this.dtgCategorias.Size = new System.Drawing.Size(598, 150);
+            this.dtgCategorias.Size = new System.Drawing.Size(636, 150);
             this.dtgCategorias.TabIndex = 0;
             // 
             // Nombre
@@ -63,14 +66,12 @@
             this.Nombre.MinimumWidth = 6;
             this.Nombre.Name = "Nombre";
             this.Nombre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Nombre.Width = 125;
             // 
             // Descripción
             // 
             this.Descripción.HeaderText = "Descripción";
             this.Descripción.MinimumWidth = 6;
             this.Descripción.Name = "Descripción";
-            this.Descripción.Width = 125;
             // 
             // FechaCreacion
             // 
@@ -81,16 +82,17 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(110, 95);
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.txtNombre.Location = new System.Drawing.Point(73, 77);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(263, 22);
+            this.txtNombre.Size = new System.Drawing.Size(309, 27);
             this.txtNombre.TabIndex = 1;
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(107, 64);
+            this.lblNombre.Location = new System.Drawing.Point(69, 29);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(249, 23);
             this.lblNombre.TabIndex = 2;
@@ -98,16 +100,18 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(446, 95);
+            this.txtDescripcion.Enabled = false;
+            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.txtDescripcion.Location = new System.Drawing.Point(73, 177);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(263, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(309, 27);
             this.txtDescripcion.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(442, 64);
+            this.label2.Location = new System.Drawing.Point(69, 139);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 23);
             this.label2.TabIndex = 4;
@@ -118,30 +122,31 @@
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.GreenYellow;
             this.btnAgregar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(111, 188);
+            this.btnAgregar.Location = new System.Drawing.Point(481, 169);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(116, 38);
+            this.btnAgregar.Size = new System.Drawing.Size(228, 38);
             this.btnAgregar.TabIndex = 6;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Agregar Categoría\r\n";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEditar
             // 
+            this.btnEditar.BackColor = System.Drawing.Color.Wheat;
             this.btnEditar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(351, 188);
+            this.btnEditar.Location = new System.Drawing.Point(481, 77);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(116, 38);
+            this.btnEditar.Size = new System.Drawing.Size(228, 38);
             this.btnEditar.TabIndex = 7;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Text = "Editar Categoría";
+            this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(593, 188);
+            this.btnEliminar.Location = new System.Drawing.Point(73, 430);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(116, 38);
             this.btnEliminar.TabIndex = 8;
@@ -149,12 +154,38 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // btnGuardarCambios
+            // 
+            this.btnGuardarCambios.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnGuardarCambios.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardarCambios.Location = new System.Drawing.Point(272, 430);
+            this.btnGuardarCambios.Name = "btnGuardarCambios";
+            this.btnGuardarCambios.Size = new System.Drawing.Size(228, 38);
+            this.btnGuardarCambios.TabIndex = 9;
+            this.btnGuardarCambios.Text = "Guardar Cambio";
+            this.btnGuardarCambios.UseVisualStyleBackColor = false;
+            this.btnGuardarCambios.Click += new System.EventHandler(this.btnGuardarCambios_Click);
+            // 
+            // btnSalirCateg
+            // 
+            this.btnSalirCateg.BackColor = System.Drawing.Color.Red;
+            this.btnSalirCateg.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalirCateg.Location = new System.Drawing.Point(593, 430);
+            this.btnSalirCateg.Name = "btnSalirCateg";
+            this.btnSalirCateg.Size = new System.Drawing.Size(116, 38);
+            this.btnSalirCateg.TabIndex = 10;
+            this.btnSalirCateg.Text = "Salir";
+            this.btnSalirCateg.UseVisualStyleBackColor = false;
+            this.btnSalirCateg.Click += new System.EventHandler(this.btnSalirCateg_Click);
+            // 
             // CategoriasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 489);
+            this.Controls.Add(this.btnSalirCateg);
+            this.Controls.Add(this.btnGuardarCambios);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
@@ -186,5 +217,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripción;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaCreacion;
+        private System.Windows.Forms.Button btnGuardarCambios;
+        private System.Windows.Forms.Button btnSalirCateg;
     }
 }

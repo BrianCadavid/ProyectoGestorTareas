@@ -39,5 +39,6 @@ INSERT INTO Estados (nombreEstado) Values ('Pendiente'), ('En Progreso'), ('Comp
 
 
 
-SELECT * FROM Categorias;
+SELECT * FROM Tareas;
+
 

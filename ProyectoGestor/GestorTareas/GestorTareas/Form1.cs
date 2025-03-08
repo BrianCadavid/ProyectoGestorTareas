@@ -25,26 +25,35 @@ namespace GestorTareas
         {
 
         }
+        public void LimpiarCampos()
+        {
+            txtUsuario.Text = "";
+            txtContrasena.Text = "";
+        }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            string nombreUusario = txtUsuario.Text;
+            string nombreUsuario = txtUsuario.Text;
             string contrasena = txtContrasena.Text;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 string query = "SELECT COUNT(*) FROM Usuarios WHERE nombreUsuario = @nombreUsuario " +
-                               "and contrasena = @contrasena";
+                               "AND contrasena = @contrasena";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nombreUsuario", nombreUusario);
+                cmd.Parameters.AddWithValue("@nombreUsuario", nombreUsuario);
                 cmd.Parameters.AddWithValue("@contrasena", contrasena);
 
                 int count = (int)cmd.ExecuteScalar();
 
                 if (count > 0)
                 {
-                    MessageBox.Show("Login Exitoso!");
+                    // Mostrar pantalla de bienvenida
+                    BienvenidaForm bienvenida = new BienvenidaForm();
+                    bienvenida.ShowDialog();
+
+                    // Después de cerrar la bienvenida, mostrar las tareas
                     TareasForm tareasForm = new TareasForm();
                     tareasForm.Show();
                     this.Hide();
@@ -55,6 +64,11 @@ namespace GestorTareas
                 }
 
             }
+        }
+
+        private void btnSalirApp_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

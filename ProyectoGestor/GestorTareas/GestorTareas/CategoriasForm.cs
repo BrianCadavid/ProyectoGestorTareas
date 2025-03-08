@@ -22,6 +22,7 @@ namespace GestorTareas
         }
 
 
+        private int categoriaIdSeleccionada = -1; // ID de la categoría en edición
 
         private void CategoriasForm_Load(object sender, EventArgs e)
         {
@@ -36,7 +37,7 @@ namespace GestorTareas
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    MessageBox.Show("Conexión exitosa con la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               //     MessageBox.Show("Conexión exitosa con la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -136,41 +137,16 @@ namespace GestorTareas
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            try
+            if (dtgCategorias.CurrentRow != null)
             {
-                if (dtgCategorias.CurrentRow != null)
-                {
-                    int id = (int)dtgCategorias.CurrentRow.Cells["id"].Value;
-                    string nombre = txtNombre.Text;
-                    string descripcion = txtDescripcion.Text;
-
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        string query = "UPDATE Categorias SET nombre = @nombre, descripcion = @descripcion WHERE id = @id";
-                        SqlCommand cmd = new SqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("@nombre", nombre);
-                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                        cmd.Parameters.AddWithValue("@id", id);
-                        cmd.ExecuteNonQuery();
-                    }
-                    LoadCategorias();
-                    LimpiarControles();
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione una categoría para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                }
-
-            }catch (SqlException ex)
+                // Guardar el ID de la categoría seleccionada
+                categoriaIdSeleccionada = Convert.ToInt32(dtgCategorias.CurrentRow.Cells["id"].Value);
+                txtNombre.Text = dtgCategorias.CurrentRow.Cells["nombre"].Value.ToString();
+                txtDescripcion.Text = dtgCategorias.CurrentRow.Cells["descripcion"].Value.ToString();
+            }
+            else
             {
-                MessageBox.Show("Error SQL al editar: " + ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }catch (Exception ex)
-            {
-                MessageBox.Show("Error al editar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Seleccione una categoría para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -218,12 +194,75 @@ namespace GestorTareas
             txtDescripcion.Text = "";
         }
 
-        // Asegúrate de que LoadCategorias() esté implementado correctamente
-        //private void LoadCategorias()
-        //{
-            // ... tu código para cargar las categorías en dtgCategorias ...
-        //}
-    }
+        private void btnGuardarCambios_Click(object sender, EventArgs e)
+        {
+            if (categoriaIdSeleccionada == -1)
+            {
+                MessageBox.Show("No hay ninguna categoría seleccionada para actualizar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Categorias SET nombre = @nombre, descripcion = @descripcion WHERE id = @id";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@nombre", txtNombre.Text.Trim());
+                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
+                    cmd.Parameters.AddWithValue("@id", categoriaIdSeleccionada);
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Categoría actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Recargar la tabla y actualizar ComboBox en TareasForm
+                LoadCategorias();
+                ActualizarCategoriasEnTareasForm();
+
+                // Limpiar campos y resetear variable
+                categoriaIdSeleccionada = -1;
+                LimpiarControles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar la categoría: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ActualizarCategoriasEnTareasForm()
+        {
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm is TareasForm tareasForm)
+                {
+                    tareasForm.LoadCategorias(); // Llama al método de TareasForm
+                    break;
+                }
+            }
+        }
+
+        private void btnSalirCateg_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Oculta CategoriasForm
+
+            // Verifica si TareasForm ya está abierto
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm is TareasForm tareasForm)
+                {
+                    tareasForm.Show();
+                    return;
+                }
+            }
+
+            // Si no está abierto, crea una nueva instancia
+            TareasForm nuevoTareasForm = new TareasForm();
+            nuevoTareasForm.Show();
+            this.Close();
+
+        }
+    }  
 }
 
         

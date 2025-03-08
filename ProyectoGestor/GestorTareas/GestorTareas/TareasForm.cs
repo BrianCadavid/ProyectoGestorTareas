@@ -26,6 +26,7 @@ namespace GestorTareas
             dtgTareas.DataError += (s, e) => { e.Cancel = true; }; // Previene errores de validación
             dtgTareas.CellValidating += dtgTareas_CellValidating;
 
+
         }
         private void TareasForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -110,18 +111,19 @@ namespace GestorTareas
         }
 
 
-        private void LoadCategorias()
+        public void LoadCategorias()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT ID, nombre FROM Categorias";
+                string query = "SELECT id, nombre FROM Categorias";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                System.Data.DataTable dt = new System.Data.DataTable();
+                DataTable dt = new DataTable();
                 da.Fill(dt);
+
                 cmbCategoria.DataSource = dt;
                 cmbCategoria.DisplayMember = "nombre";
-                cmbCategoria.ValueMember = "ID";
+                cmbCategoria.ValueMember = "id";
             }
         }
 
@@ -189,67 +191,34 @@ namespace GestorTareas
                 MessageBox.Show("Error al guardar la tarea: " + ex.Message);
             }
         }
-            
-
-           
-
-       
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dtgTareas.CurrentRow == null)
+
+            if (dtgTareas.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, selecciona una tarea para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecciona una tarea para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string titulo = txtTitulo.Text.Trim();
-            string descripcion = txtDescripcion.Text.Trim();
+            DataGridViewRow row = dtgTareas.SelectedRows[0];
 
-            if (string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(descripcion) ||
-                cmbCategoria.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1)
-            {
-                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            txtTitulo.Text = row.Cells["colTitulo"].Value?.ToString() ?? "";
+            txtDescripcion.Text = row.Cells["colDescripcion"].Value?.ToString() ?? "";
+            cmbCategoria.Text = row.Cells["colCategoria"].Value?.ToString();
+            cmbEstado.Text = row.Cells["colEstado"].Value?.ToString();
+            dateTimePicker1.Value = row.Cells["colFechaVencimiento"].Value != DBNull.Value
+                ? Convert.ToDateTime(row.Cells["colFechaVencimiento"].Value)
+                : DateTime.Now;
 
-            int id = (int)dtgTareas.CurrentRow.Cells[0].Value;
-            int categoriaId = (int)cmbCategoria.SelectedValue;
-            int estadoId = (int)cmbEstado.SelectedValue;
-            DateTime fechaVencimiento = dateTimePicker1.Value;
+            txtTitulo.Tag = row.Cells["colID"].Value; // 🔹 Guardamos el ID correctamente
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"
-            UPDATE Tareas 
-            SET 
-                titulo = @titulo, 
-                descripcion = @descripcion, 
-                categoriaId = @categoriaId, 
-                estadoId = @estadoId, 
-                fechaVencimiento = @fechaVencimiento 
-            WHERE ID = @id";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@titulo", titulo);
-                    cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                    cmd.Parameters.AddWithValue("@categoriaId", categoriaId);
-                    cmd.Parameters.AddWithValue("@estadoId", estadoId);
-                    cmd.Parameters.AddWithValue("@fechaVencimiento", fechaVencimiento);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-
-                MessageBox.Show("Tarea editada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadTareas();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al editar la tarea: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            btnAgregar.Enabled = false;
+            btnGuardar.Visible = true;
         }
+
+
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -321,6 +290,159 @@ namespace GestorTareas
                 }
             }
         }
+        private void ActualizarCategoriasEnTareasForm()
+        {
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm is TareasForm tareasForm)
+                {
+                    tareasForm.LoadCategorias(); // Llama al método de TareasForm
+                    break;
+                }
+            }
+        }
 
+        private void HabilitarEdicion()
+        {
+            if (dtgTareas.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dtgTareas.SelectedRows[0];
+
+                txtTitulo.Text = row.Cells["colTitulo"].Value?.ToString() ?? "";
+                txtDescripcion.Text = row.Cells["colDescripcion"].Value?.ToString() ?? "";
+                cmbCategoria.Text = row.Cells["colCategoria"].Value?.ToString();
+                cmbEstado.Text = row.Cells["colEstado"].Value?.ToString();
+                dateTimePicker1.Value = row.Cells["colFechaVencimiento"].Value != DBNull.Value
+                    ? Convert.ToDateTime(row.Cells["colFechaVencimiento"].Value)
+                    : DateTime.Now;
+
+                txtTitulo.Tag = row.Cells["colID"].Value; // 🔹 Guardamos el ID correctamente
+
+                // Deshabilitar el botón "Agregar" y mostrar el botón "Guardar"
+                btnAgregar.Enabled = false;
+                btnGuardar.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una tarea para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void GuardarEdicion()
+        {
+            if (txtTitulo.Tag != null) // Asegura que hay una tarea en edición
+            {
+                int tareaId = Convert.ToInt32(txtTitulo.Tag);
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Tareas SET titulo = @titulo, descripcion = @descripcion, categoriaId = @categoriaId, estadoId = @estadoId, fechaVencimiento = @fechaVencimiento WHERE id = @id";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@titulo", txtTitulo.Text);
+                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text);
+                    cmd.Parameters.AddWithValue("@categoriaId", cmbCategoria.SelectedValue);
+                    cmd.Parameters.AddWithValue("@estadoId", cmbEstado.SelectedValue);
+                    cmd.Parameters.AddWithValue("@fechaVencimiento", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@id", tareaId);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Tarea actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Recargar la lista de tareas y limpiar los campos
+                LoadTareas();
+                LimpiarCampos();
+            }
+        }
+        private void LimpiarCampos()
+        {
+            txtTitulo.Clear();
+            txtDescripcion.Clear();
+            cmbCategoria.SelectedIndex = -1;
+            cmbEstado.SelectedIndex = -1;
+            dateTimePicker1.Value = DateTime.Now;
+            txtTitulo.Tag = null; // 🔹 Limpiamos el ID guardado
+
+            btnAgregar.Enabled = true;
+            btnGuardar.Visible = false; // 🔹 Ocultamos el botón "Guardar"
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (txtTitulo.Tag == null)
+            {
+                MessageBox.Show("No hay una tarea seleccionada para actualizar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int tareaId = Convert.ToInt32(txtTitulo.Tag);
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = @"UPDATE Tareas 
+                             SET titulo = @titulo, 
+                                 descripcion = @descripcion, 
+                                 categoriaId = @categoriaId, 
+                                 estadoId = @estadoId, 
+                                 fechaVencimiento = @fechaVencimiento 
+                             WHERE id = @id";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@titulo", txtTitulo.Text.Trim());
+                    cmd.Parameters.AddWithValue("@descripcion", txtDescripcion.Text.Trim());
+                    cmd.Parameters.AddWithValue("@categoriaId", cmbCategoria.SelectedValue);
+                    cmd.Parameters.AddWithValue("@estadoId", cmbEstado.SelectedValue);
+                    cmd.Parameters.AddWithValue("@fechaVencimiento", dateTimePicker1.Value);
+                    cmd.Parameters.AddWithValue("@id", tareaId);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Tarea actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                LoadTareas(); // 🔄 Recargar la lista después de actualizar
+                LimpiarCampos(); // 🧹 Limpiar formulario
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar la tarea: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            // Buscar si el login ya está abierto
+            frmLogin loginForm = Application.OpenForms.OfType<frmLogin>().FirstOrDefault();
+
+            if (loginForm == null)
+            {
+                // Si no está abierto, crearlo y mostrarlo
+                loginForm = new frmLogin();
+                loginForm.Show();
+            }
+            else
+            {
+                // Si está abierto, limpiar los campos y mostrarlo
+                loginForm.LimpiarCampos();
+                loginForm.Show();
+            }
+
+            // Cerrar solo TareasForm
+            this.Close();
+        }
     }
+
+
+
+
 }

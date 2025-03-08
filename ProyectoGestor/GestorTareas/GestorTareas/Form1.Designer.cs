@@ -28,24 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblContrasena = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.txtContrasena = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnSalirApp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::GestorTareas.Properties.Resources.unnamed;
-            this.pictureBox1.Location = new System.Drawing.Point(115, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // lblContrasena
             // 
@@ -70,38 +61,67 @@
             // txtContrasena
             // 
             this.txtContrasena.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContrasena.Location = new System.Drawing.Point(97, 255);
+            this.txtContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.txtContrasena.Location = new System.Drawing.Point(42, 255);
             this.txtContrasena.Name = "txtContrasena";
             this.txtContrasena.PasswordChar = '*';
-            this.txtContrasena.Size = new System.Drawing.Size(166, 22);
+            this.txtContrasena.Size = new System.Drawing.Size(277, 27);
             this.txtContrasena.TabIndex = 8;
+            this.txtContrasena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtUsuario
             // 
+            this.txtUsuario.BackColor = System.Drawing.SystemColors.HighlightText;
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUsuario.Location = new System.Drawing.Point(97, 188);
+            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.Location = new System.Drawing.Point(42, 188);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(166, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(277, 27);
             this.txtUsuario.TabIndex = 7;
+            this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnIngresar
             // 
+            this.btnIngresar.AutoSize = true;
             this.btnIngresar.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnIngresar.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.Location = new System.Drawing.Point(133, 297);
+            this.btnIngresar.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold);
+            this.btnIngresar.Location = new System.Drawing.Point(42, 303);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(94, 38);
+            this.btnIngresar.Size = new System.Drawing.Size(110, 38);
             this.btnIngresar.TabIndex = 6;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::GestorTareas.Properties.Resources.unnamed;
+            this.pictureBox1.Location = new System.Drawing.Point(106, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnSalirApp
+            // 
+            this.btnSalirApp.BackColor = System.Drawing.Color.Red;
+            this.btnSalirApp.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSalirApp.Location = new System.Drawing.Point(209, 303);
+            this.btnSalirApp.Name = "btnSalirApp";
+            this.btnSalirApp.Size = new System.Drawing.Size(110, 38);
+            this.btnSalirApp.TabIndex = 11;
+            this.btnSalirApp.Text = "Salir";
+            this.btnSalirApp.UseVisualStyleBackColor = false;
+            this.btnSalirApp.Click += new System.EventHandler(this.btnSalirApp_Click);
             // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(382, 353);
+            this.ClientSize = new System.Drawing.Size(364, 353);
+            this.Controls.Add(this.btnSalirApp);
             this.Controls.Add(this.lblContrasena);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.txtContrasena);
@@ -126,6 +146,7 @@
         private System.Windows.Forms.TextBox txtContrasena;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.Button btnSalirApp;
     }
 }
 
