@@ -22,30 +22,39 @@ namespace GestorTareas
             InitializeComponent();
             CargarDatosIniciales();
             ConfigurarDataGridView();
-        }
+            dtgTareas.AllowUserToAddRows = false; // Evita que se agregue una fila en blanco automáticamente
+            dtgTareas.DataError += (s, e) => { e.Cancel = true; }; // Previene errores de validación
+            dtgTareas.CellValidating += dtgTareas_CellValidating;
 
+        }
+        private void TareasForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dtgTareas.EndEdit();  // Finaliza la edición antes de cerrar
+            this.Validate();       // Evita validaciones pendientes
+        }
         private void ConfigurarDataGridView()
         {
-            // Limpia las columnas existentes
             dtgTareas.Columns.Clear();
 
-            // Agrega las columnas manualmente
             dtgTareas.Columns.Add("colID", "ID");
             dtgTareas.Columns.Add("colTitulo", "Título");
             dtgTareas.Columns.Add("colDescripcion", "Descripción");
             dtgTareas.Columns.Add("colCategoria", "Categoría");
             dtgTareas.Columns.Add("colEstado", "Estado");
+            dtgTareas.Columns.Add("colUsuario", "Usuario"); // 🔹 Nueva columna
+            dtgTareas.Columns.Add("colFechaCreacion", "Fecha de Creación"); // 🔹 Nueva columna
             dtgTareas.Columns.Add("colFechaVencimiento", "Fecha de Vencimiento");
 
-            // Configura propiedades adicionales de las columnas
             dtgTareas.Columns["colID"].DataPropertyName = "ID";
             dtgTareas.Columns["colTitulo"].DataPropertyName = "titulo";
             dtgTareas.Columns["colDescripcion"].DataPropertyName = "descripcion";
-            dtgTareas.Columns["colCategoria"].DataPropertyName = "categoria";
-            dtgTareas.Columns["colEstado"].DataPropertyName = "estado";
+            dtgTareas.Columns["colCategoria"].DataPropertyName = "Categoria";
+            dtgTareas.Columns["colEstado"].DataPropertyName = "Estado";
+            dtgTareas.Columns["colUsuario"].DataPropertyName = "Usuario"; // 🔹 Asociamos con la consulta
+            dtgTareas.Columns["colFechaCreacion"].DataPropertyName = "fechaCreacion"; // 🔹 Asociamos con la consulta
             dtgTareas.Columns["colFechaVencimiento"].DataPropertyName = "fechaVencimiento";
 
-            // Configura el formato de la columna de fecha
+            dtgTareas.Columns["colFechaCreacion"].DefaultCellStyle.Format = "dd/MM/yyyy";
             dtgTareas.Columns["colFechaVencimiento"].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
 
@@ -74,31 +83,32 @@ namespace GestorTareas
                 {
                     conn.Open();
                     string query = @"
-                    SELECT 
-                        T.ID, 
-                        T.titulo, 
-                        T.descripcion, 
-                        C.nombre AS Categoria, 
-                        E.nombreEstado AS Estado, 
-                        T.fechaVencimiento 
-                    FROM Tareas T 
-                    INNER JOIN Categorias C ON T.categoriaId = C.ID 
-                    INNER JOIN Estados E ON T.estadoId = E.ID";
+            SELECT 
+                T.ID, 
+                T.titulo, 
+                T.descripcion, 
+                C.nombre AS Categoria, 
+                E.nombreEstado AS Estado, 
+                U.nombreUsuario AS Usuario, 
+                T.fechaCreacion, 
+                T.fechaVencimiento 
+            FROM Tareas T 
+            INNER JOIN Categorias C ON T.categoriaId = C.ID 
+            INNER JOIN Estados E ON T.estadoId = E.ID
+            INNER JOIN Usuarios U ON T.usuarioId = U.ID"; // 🔹 Unimos con Usuarios
+
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     System.Data.DataTable dt = new System.Data.DataTable();
                     da.Fill(dt);
                     dtgTareas.DataSource = dt;
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las tareas: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Error al cargar las tareas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
 
         private void LoadCategorias()
         {
@@ -137,46 +147,46 @@ namespace GestorTareas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string titulo = txtTitulo.Text;
-            string descripcion = txtDescripcion.Text;
+            string titulo = txtTitulo.Text.Trim();
+            string descripcion = txtDescripcion.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(descripcion) ||
+                cmbCategoria.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1)
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int categoriaId = (int)cmbCategoria.SelectedValue;
-            int usuarioId = 1;
+            int usuarioId = 1; // ⚠️ Si usas login, cambia esto por el ID del usuario autenticado
             int estadoId = (int)cmbEstado.SelectedValue;
             DateTime fechaVencimiento = dateTimePicker1.Value;
+            DateTime fechaCreacion = DateTime.Now; // 🔹 Guardamos la fecha actual
 
-            if (usuarioId > 0)
+            try
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        string query = "INSERT INTO Tareas (titulo, descripcion, categoriaId, usuarioId, estadoId, fechaVencimiento) VALUES (@titulo, @descripcion, @categoriaId, @usuarioId, @estadoId, @fechaVencimiento)";
-                        SqlCommand cmd = new SqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("@titulo", titulo);
-                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                        cmd.Parameters.AddWithValue("@categoriaId", categoriaId);
-                        cmd.Parameters.AddWithValue("@usuarioId", usuarioId);
-                        cmd.Parameters.AddWithValue("@estadoId", estadoId);
-                        cmd.Parameters.AddWithValue("@fechaVencimiento", fechaVencimiento);
-                        cmd.ExecuteNonQuery();
+                    conn.Open();
+                    string query = "INSERT INTO Tareas (titulo, descripcion, categoriaId, usuarioId, estadoId, fechaCreacion, fechaVencimiento) " +
+                                   "VALUES (@titulo, @descripcion, @categoriaId, @usuarioId, @estadoId, @fechaCreacion, @fechaVencimiento)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@titulo", titulo);
+                    cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                    cmd.Parameters.AddWithValue("@categoriaId", categoriaId);
+                    cmd.Parameters.AddWithValue("@usuarioId", usuarioId);
+                    cmd.Parameters.AddWithValue("@estadoId", estadoId);
+                    cmd.Parameters.AddWithValue("@fechaCreacion", fechaCreacion);
+                    cmd.Parameters.AddWithValue("@fechaVencimiento", fechaVencimiento);
+                    cmd.ExecuteNonQuery();
 
-                        MessageBox.Show("Tarea guardada correctamente.");
-                    }
-                    LoadTareas();
+                    MessageBox.Show("Tarea guardada correctamente.");
                 }
-                
-                catch (Exception ex)
-                {
-
-
-                    MessageBox.Show("Error al guardar la tarea: " + ex.Message);
-
-                }
+                LoadTareas();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se ha proporcionado un id de usuario válido.");
+                MessageBox.Show("Error al guardar la tarea: " + ex.Message);
             }
         }
             
@@ -187,19 +197,23 @@ namespace GestorTareas
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            // Verifica si se ha seleccionado una tarea en el DataGridView
             if (dtgTareas.CurrentRow == null)
             {
                 MessageBox.Show("Por favor, selecciona una tarea para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Obtén el ID de la tarea seleccionada
-            int id = (int)dtgTareas.CurrentRow.Cells[0].Value;
+            string titulo = txtTitulo.Text.Trim();
+            string descripcion = txtDescripcion.Text.Trim();
 
-            // Obtén los valores de los controles del formulario
-            string titulo = txtTitulo.Text;
-            string descripcion = txtDescripcion.Text;
+            if (string.IsNullOrWhiteSpace(titulo) || string.IsNullOrWhiteSpace(descripcion) ||
+                cmbCategoria.SelectedIndex == -1 || cmbEstado.SelectedIndex == -1)
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int id = (int)dtgTareas.CurrentRow.Cells[0].Value;
             int categoriaId = (int)cmbCategoria.SelectedValue;
             int estadoId = (int)cmbEstado.SelectedValue;
             DateTime fechaVencimiento = dateTimePicker1.Value;
@@ -210,14 +224,14 @@ namespace GestorTareas
                 {
                     conn.Open();
                     string query = @"
-                UPDATE Tareas 
-                SET 
-                    titulo = @titulo, 
-                    descripcion = @descripcion, 
-                    categoriaId = @categoriaId, 
-                    estadoId = @estadoId, 
-                    fechaVencimiento = @fechaVencimiento 
-                WHERE ID = @id";
+            UPDATE Tareas 
+            SET 
+                titulo = @titulo, 
+                descripcion = @descripcion, 
+                categoriaId = @categoriaId, 
+                estadoId = @estadoId, 
+                fechaVencimiento = @fechaVencimiento 
+            WHERE ID = @id";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@titulo", titulo);
                     cmd.Parameters.AddWithValue("@descripcion", descripcion);
@@ -229,7 +243,7 @@ namespace GestorTareas
                 }
 
                 MessageBox.Show("Tarea editada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadTareas(); // Actualiza el DataGridView después de editar
+                LoadTareas();
             }
             catch (Exception ex)
             {
@@ -270,11 +284,43 @@ namespace GestorTareas
         private void btnCategorias_Click(object sender, EventArgs e)
         {
             this.Hide(); // Oculta el formulario actual
+
             using (CategoriasForm categoriasForm = new CategoriasForm())
             {
                 categoriasForm.ShowDialog(); // Muestra el formulario de categorías
             }
-            this.Show(); // Vuelve a mostrar el formulario actual al cerrar CategoriasForm
+
+            this.Show(); // Vuelve a mostrar el formulario actual
+            LoadCategorias(); // Recarga las categorías en el ComboBox
         }
+
+        private void dtgTareas_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            // Evita validación si la fila es nueva o el formulario se está cerrando
+            if (dtgTareas.Rows[e.RowIndex].IsNewRow || this.Disposing) return;
+
+            // Verifica si hay celdas vacías en la fila
+            foreach (DataGridViewCell cell in dtgTareas.Rows[e.RowIndex].Cells)
+            {
+                if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                {
+                    MessageBox.Show("No se pueden guardar filas con campos vacíos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true; // Cancela la edición de la celda
+                    return;
+                }
+            }
+        }
+        private void dtgTareas_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dtgTareas.Columns[e.ColumnIndex].Name != "tuColumnaOpcional") // Evita validar columnas que puedan ser opcionales
+            {
+                if (string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+                {
+                    MessageBox.Show("No se pueden guardar filas con campos vacíos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true; // Cancela la edición de la celda
+                }
+            }
+        }
+
     }
 }

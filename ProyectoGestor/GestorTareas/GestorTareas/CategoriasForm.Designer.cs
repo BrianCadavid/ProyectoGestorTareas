@@ -56,7 +56,6 @@
             this.dtgCategorias.RowTemplate.Height = 24;
             this.dtgCategorias.Size = new System.Drawing.Size(598, 150);
             this.dtgCategorias.TabIndex = 0;
-            this.dtgCategorias.UseWaitCursor = true;
             // 
             // Nombre
             // 

@@ -18,6 +18,7 @@ namespace GestorTareas
         {
             InitializeComponent();
             LoadCategorias();
+            dtgCategorias.AllowUserToAddRows = false;
         }
 
 
@@ -48,7 +49,7 @@ namespace GestorTareas
 
         private void LoadCategorias()
         {
-           try
+            try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -58,18 +59,20 @@ namespace GestorTareas
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    dtgCategorias.Columns.Clear(); // Limpiar columnas existentes
+                    dtgCategorias.Columns.Clear();
                     dtgCategorias.DataSource = dt;
 
-                   
-
-                    // Seleccionar la primera fila si hay datos
-                    if (dtgCategorias.Rows.Count > 0 && dtgCategorias.Columns.Count > 0)
+                    // 🔹 Evitar filas vacías
+                    foreach (DataGridViewRow row in dtgCategorias.Rows)
                     {
-                        dtgCategorias.CurrentCell = dtgCategorias[0,0];
+                        if (row.IsNewRow) continue; // Ignorar fila de nueva entrada
+                        if (row.Cells["nombre"].Value == null || row.Cells["descripcion"].Value == null)
+                        {
+                            dtgCategorias.Rows.Remove(row); // Eliminar fila vacía
+                        }
                     }
 
-                    dtgCategorias.Refresh(); // Forzar la actualización visual
+                    dtgCategorias.Refresh();
                 }
             }
             catch (SqlException ex)
@@ -95,32 +98,39 @@ namespace GestorTareas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try { 
-            string nombre = txtNombre.Text;
-            string descripcion = txtDescripcion.Text;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string query = "INSERT INTO Categorias (nombre, descripcion) VALUES (@nombre, @descripcion)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nombre", nombre);
-                cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                cmd.ExecuteNonQuery();
-            }
-                LoadCategorias();
-                LimpiarControles();
+                string nombre = txtNombre.Text.Trim();
+                string descripcion = txtDescripcion.Text.Trim();
 
+                // Validar que los campos no estén vacíos
+                if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(descripcion))
+                {
+                    MessageBox.Show("Los campos Nombre y Descripción no pueden estar vacíos.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Detener la ejecución si los campos están vacíos
+                }
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO Categorias (nombre, descripcion) VALUES (@nombre, @descripcion)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                    cmd.ExecuteNonQuery();
+                }
+
+                LoadCategorias(); // Recargar la lista de categorías
+                LimpiarControles();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Error SQL al agregar: " + ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al agregar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
